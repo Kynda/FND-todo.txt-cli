@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+case $1 in
+"usage")
+  echo "$(basename $0)"
+  echo "  Record all changes in Git repository located at $TODO_DIR."
+  ;;
+*)
+  cd $TODO_DIR
+  git commit -a -m "$(date +'%Y-%m-%d %H:%M:%S')"
+  ;;
+esac
