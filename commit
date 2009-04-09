@@ -1,12 +1,16 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
-case $1 in
-"usage")
-  echo "$(basename $0)"
-  echo "  Record all changes in Git repository located at $TODO_DIR."
-  ;;
-*)
-  cd $TODO_DIR
-  git commit -a -m "$(date +'%Y-%m-%d %H:%M:%S')"
-  ;;
-esac
+action=$1
+shift
+
+function usage {
+	echo "  $(basename $0)"
+	echo "    Record all changes in Git repository located at $TODO_DIR."
+	echo ""
+	exit
+}
+
+[ "$action" = "usage" ] && usage
+
+cd $TODO_DIR
+git commit -a -m "$(date +'%Y-%m-%d %H:%M:%S')"
