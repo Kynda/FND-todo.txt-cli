@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+
 """
 filter incoming lines based on date threshold
 
@@ -13,9 +14,11 @@ import re
 from datetime import datetime
 
 
-def main(argv=None):
+pattern = re.compile(r"t:(\d{4})-(\d{2})-(\d{2})")
+
+
+def main(args=None):
 	now = datetime.now()
-	pattern = re.compile(r"t:(\d{4})-(\d{2})-(\d{2})")
 	for line in sys.stdin:
 		match = pattern.search(line)
 		if match:
