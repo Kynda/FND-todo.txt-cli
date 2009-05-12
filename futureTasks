@@ -5,7 +5,7 @@ filter incoming lines based on date threshold
 
 Threshold markers are of the form "t:YYYY-MM-DD".
 
-This is meant to be used as TODOTXT_FINAL_FILTER.
+This is intended to be used as TODOTXT_FINAL_FILTER.
 """
 
 import sys
