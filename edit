@@ -5,7 +5,7 @@ shift
 
 function usage() {
 	echo "  $(basename $0) [item]"
-	echo "    edit item(s) using text editor"
+	echo "    Edit item(s) using text editor."
 	echo ""
 	exit
 }
