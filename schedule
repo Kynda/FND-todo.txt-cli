@@ -6,11 +6,12 @@ item=$1
 shift
 
 function usage {
-	echo "  $(basename $0) [item]"
+	echo "  $(basename $0) [item date]"
 	echo "    Append date threshold to item."
-	echo "    If item argument is omitted, all scheduled tasks are listed."
+	echo "    If arguments are omitted, all scheduled tasks are listed."
 	echo "    Intended to be used with futureTasks \
-              (http://github.com/FND/todo.txt-cli/blob/extensions/futureTasks)."
+(http://github.com/FND/todo.txt-cli/blob/extensions/futureTasks)."
+	echo "    Example: $ $TODO_SH $(basename $0) 42 tomorrow"
 	echo ""
 	exit
 }
@@ -18,7 +19,7 @@ function usage {
 [ "$action" = "usage" ] && usage
 
 if [ "$item" = "" ]; then
-	cat $TODO_FILE | grep " t:" # intentionally not enforcing date pattern
+	cat $TODO_FILE | grep " t:" | sort # intentionally not enforcing date pattern
 else
 	$TODO_SH append $item "t:"`date -d "$*" +%F`
 fi
