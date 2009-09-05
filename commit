@@ -12,6 +12,8 @@ function usage {
 
 [ "$action" = "usage" ] && usage
 
+$TODO_FULL_SH archive
+
 cd $TODO_DIR
 git diff && \
 git commit -a -m "$(date +'%Y-%m-%d %H:%M:%S')"
