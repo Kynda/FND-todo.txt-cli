@@ -9,8 +9,8 @@ param="$*"
 pattern=" t:\([0-9]\{2,4\}[^A-Za-z0-9]\)\{2\}[0-9]\{2,4\}" # not enforcing any particular format
 
 function usage {
-	echo "  $(basename $0) [<item> <date>|remove]"
-	echo "    Set or remove date threshold of an item."
+	echo "  $(basename $0) [<item> <date>|remove|replace <date>]"
+	echo "    Set, remove or change date threshold of an item."
 	echo "    If arguments are omitted, all scheduled tasks are listed."
 	echo "    Intended to be used with futureTasks \
 (http://github.com/FND/todo.txt-cli/blob/extensions/futureTasks)."
@@ -38,12 +38,22 @@ function remove {
 	$TODO_FULL_SH replace $item "$TASK" # N.B.: retains priority
 }
 
+function replace {
+	item=$1
+	threshold=$2
+	remove $item
+	add $item "$threshold" # quotes required to support spaces
+}
+
 [ "$action" = "usage" ] && usage
 
 if [ -z $item ]; then
 	list
 elif [ "$param" = "remove" ]; then
 	remove $item
+elif [[ "$param" == replace* ]]; then
+	threshold=${param#replace }
+	replace $item "$threshold"
 else
 	add $item $param
 fi
