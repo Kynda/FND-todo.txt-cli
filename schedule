@@ -9,7 +9,7 @@ param="$*"
 pattern=" t:\([0-9]\{2,4\}[^A-Za-z0-9]\)\{2\}[0-9]\{2,4\}" # not enforcing any particular format
 
 function usage {
-	echo "  $(basename $0) [<item> <date>|remove|replace <date>]"
+	echo "  $(basename $0) [<item> <date>|rm|mv <date>]"
 	echo "    Set, remove or change date threshold of an item."
 	echo "    If arguments are omitted, all scheduled tasks are listed."
 	echo "    Intended to be used with futureTasks \
@@ -49,10 +49,10 @@ function replace {
 
 if [ -z $item ]; then
 	list
-elif [ "$param" = "remove" ]; then
+elif [ "$param" = "rm" ]; then
 	remove $item
-elif [[ "$param" == replace* ]]; then
-	threshold=${param#replace }
+elif [[ "$param" == mv* ]]; then
+	threshold=${param#mv }
 	replace $item "$threshold"
 else
 	add $item $param
