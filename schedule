@@ -42,7 +42,7 @@ function replace {
 	item=$1
 	threshold=$2
 	remove $item
-	add $item "$threshold" # quotes required to support spaces
+	add $item "$threshold"
 }
 
 [ "$action" = "usage" ] && usage
@@ -55,5 +55,5 @@ elif [[ "$param" == mv* ]]; then
 	threshold=${param#mv }
 	replace $item "$threshold"
 else
-	add $item $param
+	add $item "$param"
 fi
