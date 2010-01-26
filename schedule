@@ -31,11 +31,11 @@ function add {
 
 function remove {
 	item=$1
-	TASK=`$TODO_FULL_SH -x -p list $item | head -n1 \
+	task=`$TODO_FULL_SH -x -p list $item | head -n1 \
 		| sed -e "s/^[0-9]* //" \
-		| sed -e "s/^([A-Z])* //" \
-		| sed -e "s/$pattern//"` # remove item number, priority and threshold
-	$TODO_FULL_SH replace $item "$TASK" # N.B.: retains priority
+			-e "s/^([A-Z])* //" \
+			-e "s/$pattern//"` # remove item number, priority and threshold
+	$TODO_FULL_SH replace $item "$task" # N.B.: retains priority
 }
 
 function replace {
