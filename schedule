@@ -20,7 +20,7 @@ function usage {
 }
 
 function list {
-	cat $TODO_FILE | grep "$pattern" | sort # TODO: use todo.sh's list function (required for coloring)
+	$TODO_FULL_SH listall | grep "$pattern"
 }
 
 function add {
