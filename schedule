@@ -20,7 +20,7 @@ function usage {
 }
 
 function list {
-	$TODO_FULL_SH listall | grep "$pattern"
+	$TODO_FULL_SH -x list | grep "$pattern"
 }
 
 function add {
