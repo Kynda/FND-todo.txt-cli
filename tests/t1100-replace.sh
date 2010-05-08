@@ -26,7 +26,7 @@ replaced with
 >>> todo.sh list
 1 smell the cows
 --
-TODO: 1 of 1 tasks shown from $HOME/todo.txt
+TODO: 1 of 1 tasks shown
 
 >>> todo.sh replace 1 smell the roses
 1: smell the cows
@@ -36,7 +36,7 @@ replaced with
 >>> todo.sh list
 1 smell the roses
 --
-TODO: 1 of 1 tasks shown from $HOME/todo.txt
+TODO: 1 of 1 tasks shown
 EOF
 
 cat > todo.txt <<EOF
@@ -71,6 +71,17 @@ TODO: 4 prioritized (A).
 4: (A) collect the eggs
 replaced with
 4: (A) collect the bread
+
+>>> todo.sh replace 4 collect the eggs
+4: (A) collect the bread
+replaced with
+4: (A) collect the eggs
+EOF
+test_todo_session 'replace with &' << EOF
+>>> todo.sh replace 3 "thrash the hay & thresh the wheat"
+3: jump on hay
+replaced with 
+3: thrash the hay & thresh the wheat
 EOF
 
 test_todo_session 'replace error' << EOF
