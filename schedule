@@ -9,12 +9,15 @@ param="$*"
 pattern=" t:\([0-9]\{2,4\}[^A-Za-z0-9]\)\{2\}[0-9]\{2,4\}" # not enforcing any particular format
 
 function usage {
-	echo "  $(basename $0) [<item> <date>|rm|mv <date>]"
-	echo "    Set, remove or change date threshold of an item."
+	echo "  $(basename $0) [<item> <date>|mv <date>|rm]"
+	echo "    Set, modify or remove date threshold of an item."
 	echo "    If arguments are omitted, all scheduled tasks are listed."
-	echo "    Intended to be used with futureTasks \
+	echo "    Intended for use with futureTasks \
 (http://github.com/FND/todo.txt-cli/blob/extensions/futureTasks)."
-	echo "    Example: $ $TODO_SH $(basename $0) 42 tomorrow"
+	echo "    Examples:"
+	echo "      $ $TODO_SH $(basename $0) 42 tomorrow"
+	echo "      $ $TODO_SH $(basename $0) 42 mv 7 days"
+	echo "      $ $TODO_SH $(basename $0) 42 rm"
 	echo ""
 	exit
 }
