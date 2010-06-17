@@ -34,14 +34,12 @@ function add {
 
 function remove {
 	item=$1
-	verbose=$TODOTXT_VERBOSE
-	TODOTXT_VERBOSE=0
-	task=`$TODO_FULL_SH -x -p list $item | tail -n1 \
-		| sed -e "s/^[0-9]* //" \
+	task=`sed -e "$item!d" \
+			-e "s/^[0-9]* //" \
 			-e "s/^([A-Z])* //" \
-			-e "s/$pattern//"` # remove item number, priority and threshold
-	TODOTXT_VERBOSE=$verbose
-	$TODO_FULL_SH replace $item "$task" # N.B.: retains priority
+			-e "s/$pattern//" \
+			"$TODO_FILE"` # remove item number, priority and threshold
+	$TODO_FULL_SH replace $item "$task" # NB: retains priority
 }
 
 function replace {
