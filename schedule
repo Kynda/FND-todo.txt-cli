@@ -29,7 +29,14 @@ function list {
 function add {
 	item=$1
 	threshold=$2
-	$TODO_FULL_SH append $item "t:"`date -d "$threshold" +%F`
+
+	flag=`sed -e "$item!d" "$TODO_FILE" | grep "$pattern"`
+
+	if [ -z "$flag" ]; then
+		$TODO_FULL_SH append $item "t:"`date -d "$threshold" +%F`
+	else
+		echo "ERROR: #$item already has a date threshold - use replace instead"
+	fi
 }
 
 function remove {
