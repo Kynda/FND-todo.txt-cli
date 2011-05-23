@@ -2,10 +2,12 @@
 
 action=$1
 shift
+mode=$1
 
 function usage {
-	echo "  $(basename $0)"
+	echo "  $(basename $0) [-v]"
 	echo "    Record all changes in Git repository located at $TODO_DIR."
+	echo "    If -v argument is provided, only a preview will be shown."
 	echo ""
 	exit
 }
@@ -15,5 +17,7 @@ function usage {
 $TODO_FULL_SH archive
 
 cd "$TODO_DIR"
-git diff && \
-git commit -a -m "$(date +'%Y-%m-%d %H:%M:%S')"
+git diff
+if [ "$mode" != "-v" ]; then
+	git commit -a -m "$(date +'%Y-%m-%d %H:%M:%S')"
+fi
