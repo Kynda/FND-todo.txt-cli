@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+# pick random tasks from Z priority
+# XXX: inefficient
+
+full_list=`cat -`
+pattern="[[:digit:]][[:digit:]]* (Z)" # XXX: imprecise, but can't use `^` due to ANSI escape codes
+
+items=`echo "$full_list" | grep -v "$pattern"`
+extra=`echo "$full_list" | grep "$pattern"`
+
+# source:
+# http://www.linuxquestions.org/questions/linux-software-2/bash-choose-a-random-line-from-a-file-239334/#post1218287
+rnd=`cat /proc/sys/kernel/random/uuid | cut -c1-4 | od -d | head -1 | cut -d' ' -f2`
+lines=`echo "$extra" | wc -l`
+line=`expr $rnd % $lines + 1`
+
+echo "$items"
+echo "$extra" | head -$line | tail -1
