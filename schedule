@@ -35,7 +35,7 @@ function add {
 	if [ -z "$flag" ]; then
 		$TODO_FULL_SH append $item "t:"`date -d "$threshold" +%F`
 	else
-		echo "ERROR: #$item already has a date threshold - use \`mv\` instead"
+		replace $item "$threshold"
 	fi
 }
 
@@ -62,7 +62,7 @@ if [ -z $item ]; then
 	list
 elif [ "$param" = "rm" ]; then
 	remove $item
-elif [[ "$param" == mv* ]]; then
+elif [[ "$param" == mv* ]]; then # XXX: obsolete
 	threshold=${param#mv }
 	replace $item "$threshold"
 else
