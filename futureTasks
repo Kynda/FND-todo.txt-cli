@@ -3,9 +3,9 @@
 """
 filter incoming lines based on date threshold
 
-Threshold markers are of the form "t:YYYY-MM-DD".
+hides tasks marked with a date threshold ("t:YYYY-MM-DD") in the future
 
-This is intended to be used as TODOTXT_FINAL_FILTER.
+this is intended to be used as TODOTXT_FINAL_FILTER
 """
 
 import sys
